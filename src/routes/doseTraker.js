@@ -6,6 +6,7 @@ function doseApi(app) {
   app.use('/api/dose', router)
 
   router.get('/', doseController.get)
+  router.post('/', doseController.post)
 }
 
 module.exports = doseApi
