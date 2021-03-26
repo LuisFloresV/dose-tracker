@@ -1,7 +1,5 @@
 const doseService = require('../services/doseService')
-const { validationResult } = require('express-validator');
 const response = require('../utils/response')
-const boom = require('@hapi/boom')
 
 async function getDose(req, res, next) {
   try {
@@ -16,19 +14,16 @@ async function getOneDose(req, res, next) {
   const { id } = req.params
   try {
     const data = await doseService.getOne(id)
-    response.success(req, res, data.rows, 200)
+    if (data.rowCount === 0) {
+      response.success(req, res, "No data", 200)
+    } else {
+      response.success(req, res, data.rows, 200)
+    }
   } catch (error) {
     response.error(req, res, error, '500')
   }
 }
 async function postDose(req, res, next) {
-  // const errors = validationResult(req);
-
-  // if (!errors.isEmpty()) {
-  //   // throw new Error(errors.array())
-  //   next(errors)
-  //   // return res.status(400).json({ errors: errors.array() });
-  // }
   try {
     const data = req.body
     const postedDose = await doseService.postData(data)
@@ -56,7 +51,7 @@ async function deleteDose(req, res, next) {
     const { id } = req.params
     const deletedDose = await doseService.deleteData(id)
     if (deletedDose === 1) {
-      response.success(req, res, deletedDose, '200')
+      response.success(req, res, `${deletedDose} rows affected`, '200')
     }
     else {
       response.error(req, res, `${deletedDose} rows affected`, '500')

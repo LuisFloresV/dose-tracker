@@ -1,10 +1,10 @@
-const insertGenerator = function (table, data) {
+const insertGenerator = function (table, data, uuid) {
   let query = ""
   let values = ""
   switch (table) {
     case 'medicine':
       query = "INSERT INTO medicine VALUES ($1, $2, $3, $4) RETURNING *"
-      values = [data.id, data.name, data.dosage, data.frequency]
+      values = [uuid, data.name, data.dosage, data.frequency]
       return { query, values }
     default:
       query = ""

@@ -1,4 +1,5 @@
 const db = require('../db/postgres')
+const { v4: uuidv4 } = require('uuid');
 const TABLE = "medicine"
 
 async function getData() {
@@ -10,7 +11,8 @@ async function getOne(id) {
 }
 
 async function postData(data) {
-  return await db.insert(TABLE, data)
+  const generatedUuid = uuidv4()
+  return await db.insert(TABLE, data, generatedUuid)
 }
 
 async function updateData(id, data) {

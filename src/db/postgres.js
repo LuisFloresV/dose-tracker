@@ -25,14 +25,14 @@ const getOne = async function (table, id) {
   return data
 }
 
-const insert = async function (table, data) {
+const insert = async function (table, data, uuid) {
   // let query = ""
   // let values = ""
   // if (table === "medicine") {
   //   query = 'INSERT INTO medicine VALUES ($1, $2, $3, $4) RETURNING *'
   //   values = [data.id, data.name, data.dosage, data.frequency]
   // }
-  const resp = generatorQuery.insertGenerator(table, data)
+  const resp = generatorQuery.insertGenerator(table, data, uuid)
   return await pool.query(resp.query, resp.values)
 }
 
