@@ -25,7 +25,7 @@ const getOne = async function (table, id) {
   return data
 }
 
-const insert = async function (table, data, uuid) {
+const insert = async function (table, data, uuid = "") {
   // let query = ""
   // let values = ""
   // if (table === "medicine") {

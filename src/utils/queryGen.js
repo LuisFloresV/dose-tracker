@@ -6,6 +6,10 @@ const insertGenerator = function (table, data, uuid) {
       query = "INSERT INTO medicine VALUES ($1, $2, $3, $4) RETURNING *"
       values = [uuid, data.name, data.dosage, data.frequency]
       return { query, values }
+    case 'users':
+      query = "INSERT INTO users VALUES ($1, $2, $3, $4) RETURNING *"
+      values = [data.id, data.email, data.password, data.username]
+      return { query, values }
     default:
       query = ""
       break

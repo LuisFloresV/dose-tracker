@@ -1,5 +1,7 @@
 const express = require('express')
 const apiDose = require('./routes/doseTraker')
+const apiUser = require('./routes/userRoutes')
+
 const { errors, logErrors, wrapError } = require('./utils/errorHandler')
 const notFoundHandler = require('./utils/404Handler')
 const config = require('./config')
@@ -12,6 +14,7 @@ app.use(express.json())
 
 // routes
 apiDose(app)
+apiUser(app)
 // 404 Handler
 app.use(notFoundHandler)
 

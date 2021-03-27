@@ -6,7 +6,7 @@ async function getDose(req, res, next) {
     const data = await doseService.getData()
     response.success(req, res, data.rows, 200)
   } catch (error) {
-    response.error(req, res, error, '500')
+    next(error)
   }
 }
 
@@ -20,7 +20,7 @@ async function getOneDose(req, res, next) {
       response.success(req, res, data.rows, 200)
     }
   } catch (error) {
-    response.error(req, res, error, '500')
+    next(error)
   }
 }
 async function postDose(req, res, next) {
@@ -42,7 +42,7 @@ async function updateDose(req, res, next) {
     response.success(req, res, `Updated: ${updatedDose.rows[0].id}`, '200')
   }
   catch (error) {
-    response.error(req, res, error, '500')
+    next(error)
   }
 }
 
@@ -57,7 +57,7 @@ async function deleteDose(req, res, next) {
       response.error(req, res, `${deletedDose} rows affected`, '500')
     }
   } catch (error) {
-    response.error(req, res, error, '500')
+    next(error)
   }
 }
 
