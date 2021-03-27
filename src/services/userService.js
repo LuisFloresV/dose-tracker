@@ -13,9 +13,12 @@ async function postUser(data) {
     password: hashedPassword,
     username: data.username
   }
-  console.log(user)
   return await db.insert(TABLE, user)
 }
 
+async function getUser(email) {
+  return await db.getOne(TABLE, email)
+}
 
-module.exports = { postUser }
+
+module.exports = { postUser, getUser }

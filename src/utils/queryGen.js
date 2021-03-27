@@ -3,8 +3,8 @@ const insertGenerator = function (table, data, uuid) {
   let values = ""
   switch (table) {
     case 'medicine':
-      query = "INSERT INTO medicine VALUES ($1, $2, $3, $4) RETURNING *"
-      values = [uuid, data.name, data.dosage, data.frequency]
+      query = "INSERT INTO medicine VALUES ($1, $2, $3, $4, $5) RETURNING *"
+      values = [uuid, data.name, data.dosage, data.frequency, data.user_id]
       return { query, values }
     case 'users':
       query = "INSERT INTO users VALUES ($1, $2, $3, $4) RETURNING *"
@@ -28,13 +28,17 @@ const getGenerator = function (table) {
   }
 }
 
-const getOneGenerator = function (table, id) {
+const getOneGenerator = function (table, param) {
   let query = ""
   let values = ""
   switch (table) {
     case 'medicine':
       query = "SELECT * FROM medicine WHERE id = $1"
-      values = [id]
+      values = [param]
+      return { query, values }
+    case 'users':
+      query = "SELECT * FROM users WHERE email = $1"
+      values = [param]
       return { query, values }
     default:
       query = ""

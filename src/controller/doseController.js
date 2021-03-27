@@ -37,7 +37,6 @@ async function updateDose(req, res, next) {
   try {
     const { id } = req.params
     const data = req.body
-    console.log(data, id)
     const updatedDose = await doseService.updateData(id, data)
     response.success(req, res, `Updated: ${updatedDose.rows[0].id}`, '200')
   }

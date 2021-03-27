@@ -18,9 +18,8 @@ const get = async function (table) {
 }
 
 
-const getOne = async function (table, id) {
-  const resp = generatorQuery.getOneGenerator(table, id)
-  console.log(resp)
+const getOne = async function (table, param) {
+  const resp = generatorQuery.getOneGenerator(table, param)
   const data = await pool.query(resp.query, resp.values)
   return data
 }
@@ -38,7 +37,6 @@ const insert = async function (table, data, uuid = "") {
 
 const update = async function (table, id, data) {
   const resp = generatorQuery.updateGenerator(table, id, data)
-  console.log(resp)
   return await pool.query(resp.query, resp.values)
 }
 const deleteOne = async function (table, id) {

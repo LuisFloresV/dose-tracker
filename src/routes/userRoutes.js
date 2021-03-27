@@ -10,6 +10,8 @@ function userApi(app) {
   app.use('/api/user', router)
 
   router.post('/signup', validationHandler(userSchema), userController.postUser)
+  router.post('/sign-in', userController.signIn )
+
 }
 
 module.exports = userApi

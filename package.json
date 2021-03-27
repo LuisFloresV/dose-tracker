@@ -31,6 +31,9 @@
     "express": "^4.17.1",
     "express-validator": "^6.10.0",
     "joi": "^17.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "passport": "^0.4.1",
+    "passport-http": "^0.3.0",
     "pg": "^8.5.1",
     "uuid": "^8.3.2"
   }
