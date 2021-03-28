@@ -10,7 +10,7 @@ const config = require('./config')
 
 // Json Parser
 app.use(express.json())
-app.user(cors())
+app.use(cors())
 
 // routes
 apiDose(app)
